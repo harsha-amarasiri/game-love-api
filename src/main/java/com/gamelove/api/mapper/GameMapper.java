@@ -1,8 +1,6 @@
 package com.gamelove.api.mapper;
 
-import com.gamelove.api.dto.CreateGameRequest;
-import com.gamelove.api.dto.GameResponse;
-import com.gamelove.api.dto.UpdateGameRequest;
+import com.gamelove.api.dto.*;
 import com.gamelove.api.model.Game;
 import org.mapstruct.*;
 
@@ -20,4 +18,7 @@ public interface GameMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     void transferDetails(Game gameUpdates, @MappingTarget Game existingGame);
+
+    @Mapping(target = "id", ignore = true)
+    List<GameStats> toStatsResponse(List<GameStatsProjection> stats);
 }

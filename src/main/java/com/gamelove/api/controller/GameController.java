@@ -1,8 +1,6 @@
 package com.gamelove.api.controller;
 
-import com.gamelove.api.dto.CreateGameRequest;
-import com.gamelove.api.dto.GameResponse;
-import com.gamelove.api.dto.UpdateGameRequest;
+import com.gamelove.api.dto.*;
 import com.gamelove.api.mapper.GameMapper;
 import com.gamelove.api.model.Genre;
 import com.gamelove.api.model.Status;
@@ -49,6 +47,25 @@ public class GameController {
 
         return ResponseEntity.ok(gamesResponse);
     }
+
+    @Operation(summary = "Get popular games")
+    @GetMapping("/popular")
+    public ResponseEntity<List<GameResponse>> getMostPopularGames(@RequestParam(name = "size", required = false, defaultValue = "10") Integer size) {
+        List<GameResponse> games = this.gameService.getMostPopularGames(size);
+
+        return ResponseEntity.ok(games);
+    }
+
+    @Operation(summary = "Get stats for popular games")
+    @GetMapping("/stats/popular")
+    public ResponseEntity<List<GameStats>> getMostPopularGameStats(@RequestParam(name = "size", required = false, defaultValue = "10") Integer size) {
+        var stats = this.gameService.getMostPopularGameStats(size);
+
+        var statsResponse = this.gameMapper.toStatsResponse(stats);
+
+        return ResponseEntity.ok(statsResponse);
+    }
+
 
     // get game by id
     @Operation(summary = "Get game by id")

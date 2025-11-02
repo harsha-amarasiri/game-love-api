@@ -1,0 +1,10 @@
+-- Option 1: Using Subquery (Most Compatible)
+SELECT *
+FROM GL_GAMES
+WHERE ID IN (
+    SELECT GAME_ID
+    FROM GL_PLAYER_GAMES
+    GROUP BY GAME_ID
+    ORDER BY COUNT(PLAYER_ID) DESC
+    LIMIT 10
+    );

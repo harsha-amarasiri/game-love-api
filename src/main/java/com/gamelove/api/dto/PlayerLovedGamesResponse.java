@@ -9,7 +9,7 @@ import java.util.UUID;
  *
  * NOTE: Separate DTO defined because spring OSIV causes eager loading with lovedGames field present
  */
-public record PlayerWithLovedGamesResponse(
+public record PlayerLovedGamesResponse(
         UUID id,
         String username,
 

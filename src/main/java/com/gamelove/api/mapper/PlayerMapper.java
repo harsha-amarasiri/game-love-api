@@ -1,8 +1,8 @@
 package com.gamelove.api.mapper;
 
 import com.gamelove.api.dto.CreatePlayerRequest;
+import com.gamelove.api.dto.PlayerLovedGamesResponse;
 import com.gamelove.api.dto.PlayerResponse;
-import com.gamelove.api.dto.PlayerWithLovedGamesResponse;
 import com.gamelove.api.dto.UpdatePlayerRequest;
 import com.gamelove.api.model.Player;
 import org.mapstruct.*;
@@ -16,7 +16,7 @@ public interface PlayerMapper {
 
     List<PlayerResponse> toPlayerResponseList(List<Player> players);
 
-    List<PlayerWithLovedGamesResponse> toPlayerWithLovedGamesResponseList(List<Player> players);
+    List<PlayerLovedGamesResponse> toPlayerWithLovedGamesResponseList(List<Player> players);
 
     Player toPlayer(CreatePlayerRequest request);
 

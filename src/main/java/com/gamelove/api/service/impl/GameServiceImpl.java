@@ -1,5 +1,8 @@
 package com.gamelove.api.service.impl;
 
+import com.gamelove.api.dto.GameResponse;
+import com.gamelove.api.dto.GameStats;
+import com.gamelove.api.dto.GameStatsProjection;
 import com.gamelove.api.exception.ResourceAlreadyExistsException;
 import com.gamelove.api.exception.ResourceNotFoundException;
 import com.gamelove.api.mapper.GameMapper;
@@ -127,6 +130,22 @@ public class GameServiceImpl implements GameService {
         }
 
         this.gameRepository.deleteById(id);
+    }
+
+    @Override
+    public List<GameStatsProjection> getMostPopularGameStats(Integer size) {
+        var gameStats = this.gameRepository.getPopularGameStats(size);
+        log.info("Fetched most popular game statistics, size: {}", size);
+
+        return gameStats;
+    }
+
+    @Override
+    public List<GameResponse> getMostPopularGames(Integer size) {
+        var popularGames = this.gameRepository.findMostPopularGames(size);
+
+        log.info("Fetched {} most popular games", size);
+        return this.gameMapper.toGameResponseList(popularGames);
     }
 
 

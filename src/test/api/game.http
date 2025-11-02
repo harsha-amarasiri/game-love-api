@@ -1,5 +1,5 @@
 # define variables
-@GameID = 8fdf0d9f-9f1c-441e-b877-dc80e7cc7e17
+@GameID = a9b0c1d2-e3f4-5a6b-6c7d-8e9f0a1b2c3e
 
 ### Get all games
 GET http://localhost:8080/api/games/
@@ -7,16 +7,22 @@ GET http://localhost:8080/api/games/
 ### Get a game by ID
 GET http://localhost:8080/api/games/{{GameID}}
 
+
+### Get most popular games stats
+GET http://localhost:8080/api/games/stats/popular
+
+
 ### Create a new game
 POST http://localhost:8080/api/games/
 Content-Type: application/json
 
 {
-  "title": "The Witcher 3",
-  "description": "An open-world RPG set in a fantasy universe.",
+  "title": "Test Game",
+  "description": "A test game description.",
   "genres": [
     "RPG",
-    "ADVENTURE"
+    "ADVENTURE",
+    "OTHER"
   ]
 }
 
@@ -25,8 +31,8 @@ PUT http://localhost:8080/api/games/{{GameID}}
 Content-Type: application/json
 
 {
-  "title": "The Witcher 3: Wild Hunt",
-  "description": "An open-world RPG set in a fantasy universe with enhanced graphics.",
+  "title": "Updated test game title",
+  "description": "An updated test game description.",
   "genres": [
     "RPG",
     "ADVENTURE",
@@ -44,3 +50,9 @@ Content-Type: application/json
 
 ### Delete a game
 DELETE http://localhost:8080/api/games/{{GameID}}
+
+### Get game pupolarity stats
+GET http://localhost:8080/api/games/stats/popular
+
+### Get popular games
+GET http://localhost:8080/api/games/popular

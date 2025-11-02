@@ -1,6 +1,9 @@
 package com.gamelove.api.service;
 
 
+import com.gamelove.api.dto.GameResponse;
+import com.gamelove.api.dto.GameStats;
+import com.gamelove.api.dto.GameStatsProjection;
 import com.gamelove.api.model.Game;
 import com.gamelove.api.model.Status;
 
@@ -20,4 +23,7 @@ public interface GameService {
 
     void deleteGame(UUID id);
 
+    List<GameStatsProjection> getMostPopularGameStats(Integer size);
+
+    List<GameResponse> getMostPopularGames(Integer size);
 }
