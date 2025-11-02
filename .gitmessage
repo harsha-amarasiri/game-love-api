@@ -1,0 +1,53 @@
+# --- COMMIT START ---
+# <type>(<scope>): <subject>
+#
+# <description>: Optional
+#Description
+#
+# <links>: Optional
+#Links
+#
+
+# --- COMMIT END ---
+
+# Type can be:
+#   feat     : A new feature
+#   fix      : A bug fix
+#   docs     : Documentation only changes
+#   style    : Changes that don't affect code meaning (formatting, etc.)
+#   refactor : Code change that neither fixes a bug nor adds a feature
+#   perf     : Code change that improves performance
+#   test     : Adding missing tests or correcting existing tests
+#   build    : Changes affecting build system or external dependencies
+#   ci       : Changes to CI configuration files and scripts
+#   chore    : Other changes that don't modify src or test files
+#   revert   : Reverts a previous commit
+#
+# Scope can be:
+#   API, Controller, Service, Repository, Model, Config, Security, etc.
+#   or specific feature/module name
+#
+# Subject:
+#   - Use imperative mood ("Add feature" not "Added feature")
+#   - Don't capitalize first letter
+#   - No period at the end
+#   - Maximum 50 characters
+#
+# Description (optional):
+#   - Explain WHAT and WHY, not HOW
+#   - Wrap at 72 characters
+#   - Separate from subject with a blank line
+#
+# Links (optional):
+#   - Reference issues: Closes #123, Fixes #456
+#   - Breaking changes: BREAKING CHANGE: description
+# --------------------
+# Example commits:
+#   feat(Game API): implement game CRUD operations
+#   fix(Auth): resolve token expiration issue
+#   docs(README): add installation instructions
+#   refactor(Service): extract validation logic into utility class
+#   test(GameController): add integration tests for delete endpoint
+
+# Add this file to your git config with:
+# git config commit.template .gitmessage
