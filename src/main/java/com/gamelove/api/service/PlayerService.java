@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.UUID;
 
 public interface PlayerService {
-//    List<Player> fetchAllPlayersWithLovedGames();
-
     List<Player> fetchAllPlayersWithLovedGames();
 
     List<Player> fetchAllPlayers();
@@ -26,5 +24,5 @@ public interface PlayerService {
 
     Player loveGame(UUID id, UUID gameId);
 
-//    List<Player> fetchAllPlayers(Boolean lovedGames);
+    Player unloveGame(UUID id, UUID gameId);
 }

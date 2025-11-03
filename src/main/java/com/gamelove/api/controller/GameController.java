@@ -25,6 +25,8 @@ import java.util.UUID;
 @Tag(name = "Games", description = "Games API")
 public class GameController {
 
+    private static final String DEFAULT_RESULT_SIZE_STR = "10";
+
     private final GameService gameService;
     private final GameMapper gameMapper;
 
@@ -50,7 +52,7 @@ public class GameController {
 
     @Operation(summary = "Get popular games")
     @GetMapping("/popular")
-    public ResponseEntity<List<GameResponse>> getMostPopularGames(@RequestParam(name = "size", required = false, defaultValue = "10") Integer size) {
+    public ResponseEntity<List<GameResponse>> getMostPopularGames(@RequestParam(name = "size", required = false, defaultValue = DEFAULT_RESULT_SIZE_STR) Integer size) {
         List<GameResponse> games = this.gameService.getMostPopularGames(size);
 
         return ResponseEntity.ok(games);
@@ -58,7 +60,7 @@ public class GameController {
 
     @Operation(summary = "Get stats for popular games")
     @GetMapping("/stats/popular")
-    public ResponseEntity<List<GameStats>> getMostPopularGameStats(@RequestParam(name = "size", required = false, defaultValue = "10") Integer size) {
+    public ResponseEntity<List<GameStats>> getMostPopularGameStats(@RequestParam(name = "size", required = false, defaultValue = DEFAULT_RESULT_SIZE_STR) Integer size) {
         var stats = this.gameService.getMostPopularGameStats(size);
 
         var statsResponse = this.gameMapper.toStatsResponse(stats);

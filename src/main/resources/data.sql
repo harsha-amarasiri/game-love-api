@@ -207,7 +207,7 @@ INSERT INTO gl_players (id, username, first_name, last_name, status) VALUES
 -- ==========================================
 
 -- GamerPro2024 loves RPG and Action games
-INSERT INTO gl_player_games (player_id, game_id) VALUES
+INSERT INTO gl_player_loved_games (player_id, game_id) VALUES
      ('11111111-1111-1111-1111-111111111111', 'a1b2c3d4-e5f6-4a5b-8c9d-0e1f2a3b4c5d'),
      ('11111111-1111-1111-1111-111111111111', 'b2c3d4e5-f6a7-4b5c-9d0e-1f2a3b4c5d6e'),
      ('11111111-1111-1111-1111-111111111111', 'e5f6a7b8-c9d0-4e5f-2a3b-4c5d6e7f8a9b'),
@@ -215,7 +215,7 @@ INSERT INTO gl_player_games (player_id, game_id) VALUES
      ('11111111-1111-1111-1111-111111111111', 'f6a7b8c9-d0e1-4f5a-3b4c-5d6e7f8a9b0c');
 
 -- DragonSlayer99 loves RPG games
-INSERT INTO gl_player_games (player_id, game_id) VALUES
+INSERT INTO gl_player_loved_games (player_id, game_id) VALUES
     ('22222222-2222-2222-2222-222222222222', 'a1b2c3d4-e5f6-4a5b-8c9d-0e1f2a3b4c5d'),
     ('22222222-2222-2222-2222-222222222222', 'c3d4e5f6-a7b8-4c5d-0e1f-2a3b4c5d6e7f'),
     ('22222222-2222-2222-2222-222222222222', 'd4e5f6a7-b8c9-4d5e-1f2a-3b4c5d6e7f8a'),
@@ -223,7 +223,7 @@ INSERT INTO gl_player_games (player_id, game_id) VALUES
     ('22222222-2222-2222-2222-222222222222', 'd6e7f8a9-b0c1-5d6e-3f4a-5b6c7d8e9f0b');
 
 -- NightHawk loves FPS and shooters
-INSERT INTO gl_player_games (player_id, game_id) VALUES
+INSERT INTO gl_player_loved_games (player_id, game_id) VALUES
     ('33333333-3333-3333-3333-333333333333', 'e1f2a3b4-c5d6-4e5f-8a9b-0c1d2e3f4a5b'),
     ('33333333-3333-3333-3333-333333333333', 'f2a3b4c5-d6e7-4f5a-9b0c-1d2e3f4a5b6c'),
     ('33333333-3333-3333-3333-333333333333', 'a3b4c5d6-e7f8-4a5b-0c1d-2e3f4a5b6c7d'),
@@ -231,7 +231,7 @@ INSERT INTO gl_player_games (player_id, game_id) VALUES
     ('33333333-3333-3333-3333-333333333333', 'b4c5d6e7-f8a9-4b5c-1d2e-3f4a5b6c7d8e');
 
 -- PixelQueen loves indie and puzzle games
-INSERT INTO gl_player_games (player_id, game_id) VALUES
+INSERT INTO gl_player_loved_games (player_id, game_id) VALUES
     ('44444444-4444-4444-4444-444444444444', 'b6c7d8e9-f0a1-4b5c-3d4e-5f6a7b8c9d0e'),
     ('44444444-4444-4444-4444-444444444444', 'c7d8e9f0-a1b2-4c5d-4e5f-6a7b8c9d0e1f'),
     ('44444444-4444-4444-4444-444444444444', 'd8e9f0a1-b2c3-4d5e-5f6a-7b8c9d0e1f2a'),
@@ -240,7 +240,7 @@ INSERT INTO gl_player_games (player_id, game_id) VALUES
     ('44444444-4444-4444-4444-444444444444', 'c5d6e7f8-a9b0-5c6d-2e3f-4a5b6c7d8e9a');
 
 -- ShadowNinja loves action-adventure
-INSERT INTO gl_player_games (player_id, game_id) VALUES
+INSERT INTO gl_player_loved_games (player_id, game_id) VALUES
     ('55555555-5555-5555-5555-555555555555', 'f6a7b8c9-d0e1-4f5a-3b4c-5d6e7f8a9b0c'),
     ('55555555-5555-5555-5555-555555555555', 'a7b8c9d0-e1f2-4a5b-4c5d-6e7f8a9b0c1d'),
     ('55555555-5555-5555-5555-555555555555', 'c9d0e1f2-a3b4-4c5d-6e7f-8a9b0c1d2e3f'),
@@ -248,7 +248,7 @@ INSERT INTO gl_player_games (player_id, game_id) VALUES
     ('55555555-5555-5555-5555-555555555555', 'b0c1d2e3-f4a5-5b6c-7d8e-9f0a1b2c3d4f');
 
 -- PhoenixRising loves strategy games
-INSERT INTO gl_player_games (player_id, game_id) VALUES
+INSERT INTO gl_player_loved_games (player_id, game_id) VALUES
     ('66666666-6666-6666-6666-666666666666', 'd6e7f8a9-b0c1-4d5e-3f4a-5b6c7d8e9f0a'),
     ('66666666-6666-6666-6666-666666666666', 'e7f8a9b0-c1d2-4e5f-4a5b-6c7d8e9f0a1b'),
     ('66666666-6666-6666-6666-666666666666', 'f8a9b0c1-d2e3-4f5a-5b6c-7d8e9f0a1b2c'),
@@ -256,7 +256,7 @@ INSERT INTO gl_player_games (player_id, game_id) VALUES
     ('66666666-6666-6666-6666-666666666666', 'b0c1d2e3-f4a5-4b5c-7d8e-9f0a1b2c3d4e');
 
 -- ThunderStrike loves sports games
-INSERT INTO gl_player_games (player_id, game_id) VALUES
+INSERT INTO gl_player_loved_games (player_id, game_id) VALUES
     ('77777777-7777-7777-7777-777777777777', 'c1d2e3f4-a5b6-4c5d-8e9f-0a1b2c3d4e5f'),
     ('77777777-7777-7777-7777-777777777777', 'd2e3f4a5-b6c7-4d5e-9f0a-1b2c3d4e5f6a'),
     ('77777777-7777-7777-7777-777777777777', 'e3f4a5b6-c7d8-4e5f-0a1b-2c3d4e5f6a7b'),
@@ -264,7 +264,7 @@ INSERT INTO gl_player_games (player_id, game_id) VALUES
     ('77777777-7777-7777-7777-777777777777', 'b4c5d6e7-f8a9-5b6c-1d2e-3f4a5b6c7d8f');
 
 -- MysticMage loves horror games
-INSERT INTO gl_player_games (player_id, game_id) VALUES
+INSERT INTO gl_player_loved_games (player_id, game_id) VALUES
     ('88888888-8888-8888-8888-888888888888', 'a1b2c3d4-e5f6-5a6b-8c9d-0e1f2a3b4c5e'),
     ('88888888-8888-8888-8888-888888888888', 'b2c3d4e5-f6a7-5b6c-9d0e-1f2a3b4c5d6f'),
     ('88888888-8888-8888-8888-888888888888', 'c3d4e5f6-a7b8-5c6d-0e1f-2a3b4c5d6e7a'),
@@ -272,14 +272,14 @@ INSERT INTO gl_player_games (player_id, game_id) VALUES
     ('88888888-8888-8888-8888-888888888888', 'e5f6a7b8-c9d0-5e6f-2a3b-4c5d6e7f8a9c');
 
 -- IronFist loves all fighting/action games
-INSERT INTO gl_player_games (player_id, game_id) VALUES
+INSERT INTO gl_player_loved_games (player_id, game_id) VALUES
     ('99999999-9999-9999-9999-999999999999', 'f6a7b8c9-d0e1-4f5a-3b4c-5d6e7f8a9b0c'),
     ('99999999-9999-9999-9999-999999999999', 'b2c3d4e5-f6a7-4b5c-9d0e-1f2a3b4c5d6e'),
     ('99999999-9999-9999-9999-999999999999', 'd6e7f8a9-b0c1-5d6e-3f4a-5b6c7d8e9f0b'),
     ('99999999-9999-9999-9999-999999999999', 'b8c9d0e1-f2a3-4b5c-5d6e-7f8a9b0c1d2e');
 
 -- CrystalSword loves simulation games
-INSERT INTO gl_player_games (player_id, game_id) VALUES
+INSERT INTO gl_player_loved_games (player_id, game_id) VALUES
     ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'e9f0a1b2-c3d4-4e5f-6a7b-8c9d0e1f2a3b'),
     ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'f6a7b8c9-d0e1-5f6a-3b4c-5d6e7f8a9b0d'),
     ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'a7b8c9d0-e1f2-5a6b-4c5d-6e7f8a9b0c1e'),
@@ -287,13 +287,13 @@ INSERT INTO gl_player_games (player_id, game_id) VALUES
     ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'd0e1f2a3-b4c5-5d6e-7f8a-9b0c1d2e3f4b');
 
 -- BlazeRunner loves racing and action
-INSERT INTO gl_player_games (player_id, game_id) VALUES
+INSERT INTO gl_player_loved_games (player_id, game_id) VALUES
     ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 'f4a5b6c7-d8e9-4f5a-1b2c-3d4e5f6a7b8c'),
     ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 'c9d0e1f2-a3b4-5c6d-6e7f-8a9b0c1d2e3a'),
     ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 'b8c9d0e1-f2a3-4b5c-5d6e-7f8a9b0c1d2e');
 
 -- FrostByte loves everything
-INSERT INTO gl_player_games (player_id, game_id) VALUES
+INSERT INTO gl_player_loved_games (player_id, game_id) VALUES
     ('cccccccc-cccc-cccc-cccc-cccccccccccc', 'a1b2c3d4-e5f6-4a5b-8c9d-0e1f2a3b4c5d'),
     ('cccccccc-cccc-cccc-cccc-cccccccccccc', 'c5d6e7f8-a9b0-5c6d-2e3f-4a5b6c7d8e9a'),
     ('cccccccc-cccc-cccc-cccc-cccccccccccc', 'e1f2a3b4-c5d6-5e6f-8a9b-0c1d2e3f4a5c'),
@@ -303,7 +303,7 @@ INSERT INTO gl_player_games (player_id, game_id) VALUES
     ('cccccccc-cccc-cccc-cccc-cccccccccccc', 'a3b4c5d6-e7f8-5a6b-0c1d-2e3f4a5b6c7e');
 
 -- StormChaser loves multiplayer games
-INSERT INTO gl_player_games (player_id, game_id) VALUES
+INSERT INTO gl_player_loved_games (player_id, game_id) VALUES
     ('dddddddd-dddd-dddd-dddd-dddddddddddd', 'e1f2a3b4-c5d6-5e6f-8a9b-0c1d2e3f4a5c'),
     ('dddddddd-dddd-dddd-dddd-dddddddddddd', 'f2a3b4c5-d6e7-5f6a-9b0c-1d2e3f4a5b6d'),
     ('dddddddd-dddd-dddd-dddd-dddddddddddd', 'a3b4c5d6-e7f8-5a6b-0c1d-2e3f4a5b6c7e'),
@@ -311,21 +311,21 @@ INSERT INTO gl_player_games (player_id, game_id) VALUES
     ('dddddddd-dddd-dddd-dddd-dddddddddddd', 'b4c5d6e7-f8a9-5b6c-1d2e-3f4a5b6c7d8f');
 
 -- LunarEclipse loves story-driven games
-INSERT INTO gl_player_games (player_id, game_id) VALUES
+INSERT INTO gl_player_loved_games (player_id, game_id) VALUES
     ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', 'a7b8c9d0-e1f2-4a5b-4c5d-6e7f8a9b0c1d'),
     ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', 'e7f8a9b0-c1d2-5e6f-4a5b-6c7d8e9f0a1c'),
     ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', 'f0a1b2c3-d4e5-4f5a-7b8c-9d0e1f2a3b4c'),
     ('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', 'f8a9b0c1-d2e3-5f6a-5b6c-7d8e9f0a1b2d');
 
 -- VenomStrike loves competitive games
-INSERT INTO gl_player_games (player_id, game_id) VALUES
+INSERT INTO gl_player_loved_games (player_id, game_id) VALUES
     ('ffffffff-ffff-ffff-ffff-ffffffffffff', 'f2a3b4c5-d6e7-4f5a-9b0c-1d2e3f4a5b6c'),
     ('ffffffff-ffff-ffff-ffff-ffffffffffff', 'c5d6e7f8-a9b0-4c5d-2e3f-4a5b6c7d8e9f'),
     ('ffffffff-ffff-ffff-ffff-ffffffffffff', 'e1f2a3b4-c5d6-5e6f-8a9b-0c1d2e3f4a5c'),
     ('ffffffff-ffff-ffff-ffff-ffffffffffff', 'f2a3b4c5-d6e7-5f6a-9b0c-1d2e3f4a5b6d');
 
 -- SolarFlare loves open-world games
-INSERT INTO gl_player_games (player_id, game_id) VALUES
+INSERT INTO gl_player_loved_games (player_id, game_id) VALUES
     ('10101010-1010-1010-1010-101010101010', 'a1b2c3d4-e5f6-4a5b-8c9d-0e1f2a3b4c5d'),
     ('10101010-1010-1010-1010-101010101010', 'e5f6a7b8-c9d0-4e5f-2a3b-4c5d6e7f8a9b'),
     ('10101010-1010-1010-1010-101010101010', 'b8c9d0e1-f2a3-4b5c-5d6e-7f8a9b0c1d2e'),
@@ -333,13 +333,13 @@ INSERT INTO gl_player_games (player_id, game_id) VALUES
     ('10101010-1010-1010-1010-101010101010', 'c5d6e7f8-a9b0-5c6d-2e3f-4a5b6c7d8e9a');
 
 -- CosmicWarrior loves sci-fi games
-INSERT INTO gl_player_games (player_id, game_id) VALUES
+INSERT INTO gl_player_loved_games (player_id, game_id) VALUES
     ('20202020-2020-2020-2020-202020202020', 'e7f8a9b0-c1d2-4e5f-4a5b-6c7d8e9f0a1b'),
     ('20202020-2020-2020-2020-202020202020', 'f8a9b0c1-d2e3-5f6a-5b6c-7d8e9f0a1b2d'),
     ('20202020-2020-2020-2020-202020202020', 'e5f6a7b8-c9d0-5e6f-2a3b-4c5d6e7f8a9c');
 
 -- TitanForce loves everything popular
-INSERT INTO gl_player_games (player_id, game_id) VALUES
+INSERT INTO gl_player_loved_games (player_id, game_id) VALUES
     ('30303030-3030-3030-3030-303030303030', 'a1b2c3d4-e5f6-4a5b-8c9d-0e1f2a3b4c5d'),
     ('30303030-3030-3030-3030-303030303030', 'e1f2a3b4-c5d6-5e6f-8a9b-0c1d2e3f4a5c'),
     ('30303030-3030-3030-3030-303030303030', 'c5d6e7f8-a9b0-5c6d-2e3f-4a5b6c7d8e9a'),
@@ -348,12 +348,12 @@ INSERT INTO gl_player_games (player_id, game_id) VALUES
     ('30303030-3030-3030-3030-303030303030', 'b6c7d8e9-f0a1-4b5c-3d4e-5f6a7b8c9d0e');
 
 -- VortexHunter loves battle royale
-INSERT INTO gl_player_games (player_id, game_id) VALUES
+INSERT INTO gl_player_loved_games (player_id, game_id) VALUES
     ('40404040-4040-4040-4040-404040404040', 'a3b4c5d6-e7f8-4a5b-0c1d-2e3f4a5b6c7d'),
     ('40404040-4040-4040-4040-404040404040', 'a3b4c5d6-e7f8-5a6b-0c1d-2e3f4a5b6c7e');
 
 -- NeonGhost loves indie games
-INSERT INTO gl_player_games (player_id, game_id) VALUES
+INSERT INTO gl_player_loved_games (player_id, game_id) VALUES
     ('50505050-5050-5050-5050-505050505050', 'b6c7d8e9-f0a1-4b5c-3d4e-5f6a7b8c9d0e'),
     ('50505050-5050-5050-5050-505050505050', 'c7d8e9f0-a1b2-4c5d-4e5f-6a7b8c9d0e1f'),
     ('50505050-5050-5050-5050-505050505050', 'd8e9f0a1-b2c3-4d5e-5f6a-7b8c9d0e1f2a'),

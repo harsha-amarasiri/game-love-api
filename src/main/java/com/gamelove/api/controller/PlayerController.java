@@ -1,6 +1,7 @@
 package com.gamelove.api.controller;
 
 import com.gamelove.api.dto.CreatePlayerRequest;
+import com.gamelove.api.dto.PlayerLovedGamesResponse;
 import com.gamelove.api.dto.PlayerResponse;
 import com.gamelove.api.dto.UpdatePlayerRequest;
 import com.gamelove.api.mapper.PlayerMapper;
@@ -48,8 +49,6 @@ public class PlayerController {
         return ResponseEntity.ok(playersResponse);
     }
 
-//    @Operation("Get players with their loved games")
-
 
     // get player by id
     @Operation(summary = "Get player by id")
@@ -63,6 +62,7 @@ public class PlayerController {
     }
 
     // create player
+    @Operation(summary = "Create a player")
     @PostMapping
     public ResponseEntity<PlayerResponse> createPlayer(@Valid @RequestBody CreatePlayerRequest request) {
         var player = this.playerMapper.toPlayer(request);
@@ -77,6 +77,7 @@ public class PlayerController {
     }
 
     // update player
+    @Operation(summary = "Update a player")
     @PutMapping("/{id}")
     public ResponseEntity<PlayerResponse> updatePlayer(@PathVariable UUID id, @Valid @RequestBody UpdatePlayerRequest request) {
         var player = this.playerMapper.toPlayer(request);
@@ -88,15 +89,27 @@ public class PlayerController {
     }
 
     // love game
+    @Operation(summary = "Love a game")
     @PatchMapping("/{id}/games/{gameId}/love")
-    public ResponseEntity<PlayerResponse> loveGame(@PathVariable UUID id, @PathVariable UUID gameId) {
+    public ResponseEntity<PlayerLovedGamesResponse> loveGame(@PathVariable UUID id, @PathVariable UUID gameId) {
         var player = this.playerService.loveGame(id, gameId);
 
-        var playerResponse = this.playerMapper.toPlayerResponse(player);
+        var playerResponse = this.playerMapper.toPlayerWithLovedGamesResponse(player);
+        return ResponseEntity.ok(playerResponse);
+    }
+
+    // unlove game
+    @Operation(summary = "Unlove a game")
+    @PatchMapping("/{id}/games/{gameId}/unlove")
+    public ResponseEntity<PlayerLovedGamesResponse> unloveGame(@PathVariable UUID id, @PathVariable UUID gameId) {
+        var player = this.playerService.unloveGame(id, gameId);
+
+        var playerResponse = this.playerMapper.toPlayerWithLovedGamesResponse(player);
         return ResponseEntity.ok(playerResponse);
     }
 
     // update player status
+    @Operation(summary = "Update a player status")
     @PatchMapping("/{id}/status")
     public ResponseEntity<PlayerResponse> updatePlayerStatus(@PathVariable UUID id, @RequestParam(name = "value") Status status) {
         var player = this.playerService.updatePlayerStatus(id, status);
@@ -106,6 +119,7 @@ public class PlayerController {
     }
 
     // delete player
+    @Operation(summary = "Delete a player")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePlayer(@PathVariable UUID id) {
         this.playerService.deletePlayer(id);

@@ -11,7 +11,9 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "gl_players")
+@Table(name = "gl_players",
+        uniqueConstraints = @UniqueConstraint(name = "uk_player__username", columnNames = {"username"})
+)
 public class Player {
 
     @Id
@@ -34,11 +36,18 @@ public class Player {
 
     // loved games - many-to-many relationship
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinTable(name = "gl_player_games", joinColumns = @JoinColumn(name = "player_id"), inverseJoinColumns = @JoinColumn(name = "game_id"))
+    @JoinTable(name = "gl_player_loved_games",
+            joinColumns = @JoinColumn(name = "player_id", foreignKey = @ForeignKey(name = "fk_player__player_loved_games")),
+            inverseJoinColumns = @JoinColumn(name = "game_id", foreignKey = @ForeignKey(name = "fk_game__player_loved_games"))
+    )
     private List<Game> lovedGames = new ArrayList<>();
 
     public void loveGame(Game game) {
         this.lovedGames.add(game);
+    }
+
+    public void unloveGame(Game game) {
+        this.lovedGames.remove(game);
     }
 
 
@@ -53,6 +62,11 @@ public class Player {
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
         return id.equals(player.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 
     @PrePersist

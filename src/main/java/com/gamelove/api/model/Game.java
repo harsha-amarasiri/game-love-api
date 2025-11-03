@@ -10,12 +10,14 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "gl_games")
+@Table(name = "gl_games",
+        uniqueConstraints = @UniqueConstraint(name = "uk_game__title", columnNames = {"title"})
+)
 public class Game {
 
     @Id
     @Column(name = "id", nullable = false, updatable = false, unique = true)
-    private UUID Id;
+    private UUID id;
 
     @Column(name = "title", length = 255, unique = true, nullable = false)
     private String title;
@@ -31,21 +33,22 @@ public class Game {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
-    @CollectionTable(name = "gl_game_genres", joinColumns = @JoinColumn(name = "game_id"))
+    @CollectionTable(name = "gl_game_genres",
+            joinColumns = @JoinColumn(name = "game_id", foreignKey = @ForeignKey(name = "fk_game__game_genres")))
     @Column(name = "genre", nullable = false)
     private List<Genre> genres;
 
 
     @PrePersist
     public void prePersist() {
-        if (this.Id == null) {
-            this.Id = UUID.randomUUID();
+        if (this.id == null) {
+            this.id = UUID.randomUUID();
         }
     }
 
     @Override
     public String toString() {
-        return "Game{" + "Id=" + Id + ", title='" + title + '\'' + ", description='" + description + '\'' + ", status=" + status + ", genres=" + genres + '}';
+        return "Game{" + "Id=" + id + ", title='" + title + '\'' + ", description='" + description + '\'' + ", status=" + status + ", genres=" + genres + '}';
     }
 
     @Override
@@ -53,6 +56,11 @@ public class Game {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Game game = (Game) o;
-        return Id.equals(game.Id) && title.equalsIgnoreCase(game.title);
+        return id.equals(game.id) && title.equalsIgnoreCase(game.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode() + title.toLowerCase().hashCode();
     }
 }

@@ -21,6 +21,4 @@ public interface PlayerRepository extends JpaRepository<Player, UUID> {
     @Override
     List<Player> findAll();
 
-//    @Query("SELECT DISTINCT p FROM Player p LEFT JOIN FETCH p.lovedGames")
-//    List<Player> findAllPlayersWithLovedGames();
 }

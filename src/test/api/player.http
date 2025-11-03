@@ -1,4 +1,4 @@
-@PlayerID=5a371e00-57fb-4e9f-a816-96d385aef64d
+@PlayerID=03993380-2e13-48e9-a2f0-98e87dbf4004
 
 ### Get all players
 GET http://localhost:8080/api/players/
@@ -15,7 +15,7 @@ POST http://localhost:8080/api/players/
 Content-Type: application/json
 
 {
-  "username": "Gamer123",
+  "username": "TestPlayer",
   "email": "gamer@example.com",
   "firstName": "John",
   "lastName": "Doe"
@@ -48,4 +48,10 @@ DELETE http://localhost:8080/api/players/{{PlayerID}}
 
 
 ### love a game
-PATCH http://localhost:8080/api/players/{{PlayerID}}/games/6d32d996-69c8-4e7d-bf7c-30d06748ce5d/love
+PATCH http://localhost:8080/api/players/{{PlayerID}}/games/f0a1b2c3-d4e5-4f5a-7b8c-9d0e1f2a3b4c/love
+
+### Love another game
+PATCH http://localhost:8080/api/players/{{PlayerID}}/games/f6a7b8c9-d0e1-4f5a-3b4c-5d6e7f8a9b0c/love
+
+### unlove a game
+PATCH http://localhost:8080/api/players/{{PlayerID}}/games/f0a1b2c3-d4e5-4f5a-7b8c-9d0e1f2a3b4c/unlove

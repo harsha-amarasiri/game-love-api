@@ -14,6 +14,8 @@ public interface PlayerMapper {
 
     PlayerResponse toPlayerResponse(Player player);
 
+    PlayerLovedGamesResponse toPlayerWithLovedGamesResponse(Player player);
+
     List<PlayerResponse> toPlayerResponseList(List<Player> players);
 
     List<PlayerLovedGamesResponse> toPlayerWithLovedGamesResponseList(List<Player> players);

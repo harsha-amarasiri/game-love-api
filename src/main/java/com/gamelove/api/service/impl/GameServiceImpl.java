@@ -1,7 +1,6 @@
 package com.gamelove.api.service.impl;
 
 import com.gamelove.api.dto.GameResponse;
-import com.gamelove.api.dto.GameStats;
 import com.gamelove.api.dto.GameStatsProjection;
 import com.gamelove.api.exception.ResourceAlreadyExistsException;
 import com.gamelove.api.exception.ResourceNotFoundException;
@@ -13,12 +12,14 @@ import com.gamelove.api.service.GameService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
 
 @Slf4j
 @Service
+@Transactional(readOnly = true)
 public class GameServiceImpl implements GameService {
     private final GameRepository gameRepository;
     private final GameMapper gameMapper;
@@ -50,6 +51,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    @Transactional
     public Game createGame(Game game) {
 
         log.debug("Creating game: {}", game);
@@ -70,6 +72,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    @Transactional
     public Game updateGameDetails(UUID id, Game gameUpdates) {
 
 
@@ -101,6 +104,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    @Transactional
     public Game updateGameStatus(UUID id, Status status) {
 
         var game = this.gameRepository.findById(id);
@@ -123,6 +127,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
+    @Transactional
     public void deleteGame(UUID id) {
         // check if game exists
         if (!gameExists(id)) {

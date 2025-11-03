@@ -2,11 +2,11 @@ package com.gamelove.api.model;
 
 public enum Status {
 
-    ACTIVE("Active", "Game is currently active"),
+    ACTIVE("Active", "Subject currently active"),
 
-    INACTIVE("Inactive", "Game is temporarily inactive"),
+    INACTIVE("Inactive", "Subject has been marked as inactive"),
 
-    SUSPENDED("Suspended", "Game has been suspended");
+    SUSPENDED("Suspended", "Subject has been suspended");
 
     private final String displayName;
     private final String description;

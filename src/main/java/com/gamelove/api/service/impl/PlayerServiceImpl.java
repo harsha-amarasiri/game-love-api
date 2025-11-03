@@ -12,12 +12,14 @@ import com.gamelove.api.service.PlayerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
 
 @Slf4j
 @Service
+@Transactional(readOnly = true)
 public class PlayerServiceImpl implements PlayerService {
 
     private final PlayerRepository playerRepository;
@@ -33,23 +35,22 @@ public class PlayerServiceImpl implements PlayerService {
 
 
     @Override
-    public List<Player> fetchAllPlayersWithLovedGames() {
-        log.debug("Fetching all players with loved games");
-
-
-        var players = this.playerRepository.findAllWithLovedGames();
-
-        log.info("Fetched  all players with loved games");
-        return players;
-    }
-
-    @Override
     public List<Player> fetchAllPlayers() {
         log.info("Fetching all players");
 
         var players = this.playerRepository.findAll();
         log.info("Fetched  all players");
 
+        return players;
+    }
+
+    @Override
+    public List<Player> fetchAllPlayersWithLovedGames() {
+        log.debug("Fetching all players with loved games");
+
+        var players = this.playerRepository.findAllWithLovedGames();
+
+        log.info("Fetched  all players with loved games");
         return players;
     }
 
@@ -68,7 +69,9 @@ public class PlayerServiceImpl implements PlayerService {
         return player.get();
     }
 
+
     @Override
+    @Transactional
     public Player createPlayer(Player player) {
         log.debug("Creating player: {}", player);
 
@@ -88,6 +91,7 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
+    @Transactional
     public Player updatePlayer(UUID id, Player playerUpdates) {
         var player = this.playerRepository.findById(id);
 
@@ -123,6 +127,7 @@ public class PlayerServiceImpl implements PlayerService {
 
     // update player status
     @Override
+    @Transactional
     public Player updatePlayerStatus(UUID id, Status status) {
 
         // get player
@@ -146,6 +151,7 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
+    @Transactional
     public void deletePlayer(UUID id) {
         log.debug("Deleting player with id: {}", id);
 
@@ -160,6 +166,7 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     @Override
+    @Transactional
     public Player loveGame(UUID id, UUID gameId) {
         // check if player exists
         var player = this.playerRepository.findById(id);
@@ -178,12 +185,54 @@ public class PlayerServiceImpl implements PlayerService {
         }
 
         // player loves game
+        if (existingPlayer.getLovedGames().contains(game)) {
+            log.warn("Player with id {} already loves the game with id {}", id, gameId);
+
+            // options are available to either throw exception or return existing player.
+            // I am choosing to return the existing player. because it makes the operation idempotent.
+            // otherwise the client needs additional logic to handle the exception.
+            return existingPlayer;
+        }
+
         existingPlayer.loveGame(game);
 
         // save changes
         var updatedPlayer = this.playerRepository.save(existingPlayer);
 
         log.info("Player with id {} loved the game with id {}", id, gameId);
+        return updatedPlayer;
+    }
+
+    @Override
+    @Transactional
+    public Player unloveGame(UUID id, UUID gameId) {
+        // check if player exists
+        var player = this.playerRepository.findById(id);
+
+        if (player.isEmpty()) {
+            log.warn("Player with id {} was not found when trying to unlove game", id);
+            throw new ResourceNotFoundException("Player with id " + id + " was not found.");
+        }
+        var existingPlayer = player.get();
+
+        // check if game exists
+        var game = this.gameService.findGameById(gameId);
+        if (game == null) {
+            log.warn("Game with id {} was not found when trying to unlove game", gameId);
+            throw new ResourceNotFoundException("Game with id " + gameId + " was not found.");
+        }
+
+        // player unloves game
+        if (!existingPlayer.getLovedGames().contains(game)) {
+            log.warn("Player with id {} does not love the game with id {}", id, gameId);
+            throw new ResourceNotFoundException("Player with id " + id + " does not love the game with id " + gameId);
+        }
+        existingPlayer.unloveGame(game);
+
+        // save changes
+        var updatedPlayer = this.playerRepository.save(existingPlayer);
+
+        log.info("Player with id {} unloved the game with id {}", id, gameId);
         return updatedPlayer;
     }
 
