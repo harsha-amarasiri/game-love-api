@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,7 +37,7 @@ public class Game {
     @CollectionTable(name = "gl_game_genres",
             joinColumns = @JoinColumn(name = "game_id", foreignKey = @ForeignKey(name = "fk_game__game_genres")))
     @Column(name = "genre", nullable = false)
-    private List<Genre> genres;
+    private List<Genre> genres = new ArrayList<>();
 
 
     @PrePersist
