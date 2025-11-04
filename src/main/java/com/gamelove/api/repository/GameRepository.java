@@ -33,7 +33,7 @@ public interface GameRepository extends JpaRepository<Game, UUID> {
     @Query(value = """
             SELECT G.*
             FROM GL_GAMES G
-            INNER JOIN (
+            WHERE G.ID IN (
                 SELECT PG.GAME_ID
                 FROM GL_PLAYER_LOVED_GAMES PG
                 GROUP BY PG.GAME_ID

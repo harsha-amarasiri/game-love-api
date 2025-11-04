@@ -1,5 +1,5 @@
 # define variables
-@GameID = a9b0c1d2-e3f4-5a6b-6c7d-8e9f0a1b2c3e
+@GameID = 587ecb9c-f600-422d-8ad9-eaeb44930616
 
 ### Get all games
 GET http://localhost:8080/api/games/
