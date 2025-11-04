@@ -25,8 +25,10 @@ Requirements for this API are specified [here](https://github.com/comeon-group/c
 
 > :fire: A more complete version of this project with additional features and improvements can be found at
 > [GameOn API](https://github.com/harsha-amarasiri/game-on-api).
-> This project is implemented with DDD principles includes technologies and patterns including *Soft Deletes, JPA
-> Auditing, Entity Versioning, Database Migrations,Pagination, Global Exception Handling, Enhanced API error handling
+> This project is implemented loosely following DDD principles to demonstrate technologies and patterns including *Soft
+Deletes, JPA
+> Auditing, Entity Versioning, Database Migrations, Pagination & Sorting, Request Validation, Global Exception Handling,
+Enhanced API error handling
 > and more.*
 
 ## :bulb: Features
@@ -36,7 +38,7 @@ Requirements for this API are specified [here](https://github.com/comeon-group/c
 - Player's Loved Games: Retrieve all games loved by a specific player
 - Most Loved Games: Get top N most loved games with love counts
 - Game Catalog: Fetch all available games in the system
-- Embedded Database: Uses H2 in-memory database for easy setup and testing
+- Embedded Database: Uses H2 local-file database for easy setup and testing
 
 ## :classical_building: Architecture
 
@@ -91,14 +93,14 @@ graph TB
 
 ### :ledger: Architectural Decisions:
 
-| ADR # | Title                                                                      | Decision                                                                     | Reasoning                                                                                                                                      |
-|-------|----------------------------------------------------------------------------|------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| 0001  | Use layered architecture with domain isolation                             | Using DTOss to isolate domain from API                                       | Prevent exposure of domain and sensitive information through public APIs                                                                       |
-| 0002  | Strict persistence and domain layer isolation not enforced                 | Spring Data JPA repositories used to perform persistence operations          | To prevent overengineering with multiple DTO mappings and XML defined persistence contexts, domain layer has to retain persistence annotations |   
-| 0003  | Use MapStruct for mapping between domain objects and data transfer objects | Use MapStruct for mapping between domain objects and data transfer objects   | Mapstruct provides robust/performant annotations based API for mapping domain to DTOs and vice versa                                           | 
-| 0004  | Love/Unlove operations implementation                                      | Loving and unloving games are operations of '/api/players/ resource          | Loving/unloving games are performed by a player, therefore defined as an action upon player resource                                           |
-| 0005  | Game Player 'many-to-many' mapping                                         | Players and their loves for the game mapped directly with a mapping table    | To retain the simplicity of the implementation, ownership of the game is not considered                                                        |
-| 0006  | Love/Unlove endpoints implementation                                       | Love/Unlove endpoints are implemented as partial updates with 'PATCH' method | Loving and unloving does not update the properties of the player domain, but modifies an associated collection                                 |
+| ADR # | Title                                                                      | Decision                                                                                                                  | Reasoning                                                                                                                                      |
+|-------|----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| 0001  | Use layered architecture with domain isolation                             | Using DTOss to isolate domain from API                                                                                    | Prevent exposure of domain and sensitive information through public APIs                                                                       |
+| 0002  | Strict persistence and domain layer isolation not enforced                 | Spring Data JPA repositories used to perform persistence operations                                                       | To prevent overengineering with multiple DTO mappings and XML defined persistence contexts, domain layer has to retain persistence annotations |   
+| 0003  | Use MapStruct for mapping between domain objects and data transfer objects | Use MapStruct for mapping between domain objects and data transfer objects                                                | Mapstruct provides robust/performant annotations based API for mapping domain to DTOs and vice versa                                           | 
+| 0004  | Love/Unlove operations implementation                                      | Loving and unloving games are operations of '/api/players/ resource                                                       | Loving/unloving games are performed by a player, therefore defined as an action upon player resource                                           |
+| 0005  | Game Player 'many-to-many' mapping                                         | Players and their loves for the game mapped directly with a mapping table. Unidirectional mapping from Player entity used | To retain the simplicity of the implementation, ownership of the game is not considered.                                                       |
+| 0006  | Love/Unlove endpoints implementation                                       | Love/Unlove endpoints are implemented as partial updates with 'PATCH' method                                              | Loving and unloving does not update the properties of the player domain, but modifies an associated collection                                 |
 
 ## :nut_and_bolt: Technology Stack
 
@@ -106,7 +108,7 @@ graph TB
 - Spring Boot 3.5.7
 - Spring Data JPA
 - MapStruct
-- H2 Database (local file-based)
+- H2 Database (local-file)
 - Swagger UI
 - Lombok
 - JUnit 5
@@ -150,7 +152,7 @@ erDiagram
 
 > API endpoints are documented using [Swagger UI](http://localhost:8080/swagger-ui.html).
 
-### PlayerController
+### Player Endpoints
 
 | Method | Endpoint                                |
 |--------|-----------------------------------------|
@@ -163,7 +165,7 @@ erDiagram
 | PATCH  | /api/players/{id}/status                |
 | DELETE | /api/players/{id}                       |
 
-### GameController
+### Game Endpoints
 
 | Method | Endpoint                 |
 |--------|--------------------------|
@@ -226,7 +228,7 @@ rm -rf ./data/*
 5. Run the application
 6. Go to [H2 console](http://localhost:8080/h2-console/login.jsp) and check data exists
 
-![img.png](docs/h2-data.png)
+![H2 Data](docs/h2-data.png)
 
 ## :test_tube: Testing
 
@@ -242,11 +244,11 @@ mvn clean test jacoco:report -Dspring.profiles.active=test
 
 - Open `target/site/jacoco/index.html` in your browser.
 
-![img.png](docs/test-coverage.png)
+![Test Coverage](docs/test-coverage.png)
 
-## :file_folder: Project Structure
+## :card_index_dividers: Project Structure
 
-### :card_index_dividers: High-level Project Overview
+### :file_folder: High-level Project Overview
 
 ```
 / (repo root)
