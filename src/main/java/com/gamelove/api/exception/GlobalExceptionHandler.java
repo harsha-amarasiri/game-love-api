@@ -65,6 +65,17 @@ public class GlobalExceptionHandler {
         return errorResponse;
     }
 
+    @ExceptionHandler(InvalidOperationException.class)
+    public ProblemDetail handleInvalidOperationException(InvalidOperationException e) {
+        var errorResponse = ProblemDetail.forStatusAndDetail(
+                HttpStatus.BAD_REQUEST,
+                e.getMessage()
+        );
+        errorResponse.setTitle("InvalidOperationException");
+        errorResponse.setProperty(TIMESTAMP_PROPERTY, LocalDateTime.now());
+        return errorResponse;
+    }
+
     @ExceptionHandler(Exception.class)
     public ProblemDetail handleGenericException(Exception e) {
         log.error("Unexpected error occurred", e);

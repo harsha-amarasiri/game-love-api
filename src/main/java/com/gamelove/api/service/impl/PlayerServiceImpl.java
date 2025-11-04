@@ -1,6 +1,7 @@
 package com.gamelove.api.service.impl;
 
 import com.gamelove.api.exception.GameLoveException;
+import com.gamelove.api.exception.InvalidOperationException;
 import com.gamelove.api.exception.ResourceAlreadyExistsException;
 import com.gamelove.api.exception.ResourceNotFoundException;
 import com.gamelove.api.mapper.PlayerMapper;
@@ -106,14 +107,14 @@ public class PlayerServiceImpl implements PlayerService {
         // check if the plauer is suspended
         if (existingPlayer.getStatus() == Status.SUSPENDED) {
             log.warn("Player with id {} is suspended. Denying update.", id);
-            throw new GameLoveException("Updates to player with id " + id + " are not allowed. Player is suspended.");
+            throw new InvalidOperationException("Updates to player with id " + id + " are not allowed. Player is suspended.");
         }
 
 
         // check if username has changed
         if (!existingPlayer.getUsername().equals(playerUpdates.getUsername())) {
             log.warn("Username change detected for player with id {}. Denying update.", id);
-            throw new GameLoveException("Username cannot be changed.");
+            throw new InvalidOperationException("Username cannot be changed.");
         }
 
         // perform the update
