@@ -278,7 +278,8 @@ mvn clean test jacoco:report -Dspring.profiles.active=test
 ```
 src/main/java/com/gamelove/api/
 ├─ GameLoveApiApplication.java
-├─ ConditionalDataLoader.java
+├─ config
+│  └─ ConditionalDataLoader.java
 ├─ controller/
 │  ├─ GameController.java
 │  └─ PlayerController.java
