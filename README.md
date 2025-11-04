@@ -38,7 +38,7 @@ Requirements for this API are specified [here](https://github.com/comeon-group/c
 - Game Catalog: Fetch all available games in the system
 - Embedded Database: Uses H2 in-memory database for easy setup and testing
 
-## :computer: Architecture
+## :classical_building: Architecture
 
 Application implements a layered architecture with the following components:
 
@@ -89,7 +89,7 @@ graph TB
     GR ~~~ PR
 ```
 
-Architectural Decisions:
+### :ledger: Architectural Decisions:
 
 | ADR # | Title                                                                      | Decision                                                                     | Reasoning                                                                                                                                      |
 |-------|----------------------------------------------------------------------------|------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -186,7 +186,7 @@ erDiagram
 - Git 2.36.2
 - IDE of your choice (e.g. IntelliJ IDEA, Eclipse, etc.)
 
-### :play: Running the application
+### :keyboard: Running the application (Console)
 
 1. Clone the repository
 2. Run `mvn spring-boot:run -Dspring-boot.run.profiles=dev`
@@ -197,12 +197,123 @@ erDiagram
 >
 > Run `$ JAVA_HOME=<your_java_21_home> mvn spring-boot:run -Dspring-boot.run.profiles=dev`.
 
-### Testing
+### :desktop_computer: Running the application (IDE)
 
-> :white_check_mark: Tested on Fedora 42, Temurin Java 21.0.8 and Maven 3.9.9
+1. Clone the repository
+2. Import the project into your IDE
+4. Run `GameLoveApiApplication`
+   ![Project Startup](docs/project-start.png)
+5. Open [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html) to view the API documentation
+6. Explore the API endpoints
 
+### :bomb: Rebuilding the database
+
+In case you want to rebuild the database, follow the steps below:
+
+1. Stop the application if it's running
+2. Backup database files
+
+```bash
+cp -r ./data ./data-backup-$(date +%Y%m%d%H%M%S)
+```
+
+3. Delete the existing database files
+
+```bash
+rm -rf ./data/*
+```
+
+5. Run the application
+6. Go to [H2 console](http://localhost:8080/h2-console/login.jsp) and check data exists
+
+![img.png](docs/h2-data.png)
+
+## :test_tube: Testing
+
+> :white_check_mark: Tested on `Fedora 42`, `Temurin Java 21.0.8` and `Maven 3.9.9`
+
+### :arrow_forward: Running tests
+
+```bash
+mvn clean test jacoco:report -Dspring.profiles.active=test
+```
+
+### :arrow_forward: Viewing test coverage report
+
+- Open `target/site/jacoco/index.html` in your browser.
+
+![img.png](docs/test-coverage.png)
 
 ## :file_folder: Project Structure
+
+### :card_index_dividers: High-level Project Overview
+
+```
+/ (repo root)
+├─ mvnw                 # Maven wrapper script
+├─ mvnw.cmd             # Maven wrapper for Windows
+├─ pom.xml              # Maven project definition and dependencies
+├─ README.md            # Project overview and instructions
+├─ data/                # Local H2 database files used for development
+│  └─ gameondb.mv.db
+├─ data-backup/         # Backups of the H2 DB
+│  ├─ gameondb.mv.db
+│  └─ gameondb.trace.db
+├─ docs/                # Project documentation and images
+│  ├─ h2-data.png
+│  └─ test-coverage.png
+├─ src/                 # Source code and tests
+│  ├─ main/             # Application source and resources
+│  │  ├─ java/          # Java source (package root: com.gamelove.api)
+│  │  └─ resources/     # Configs, SQL scripts, static assets
+│  └─ test/             # Tests and test utilities
+├─ target/              # Build outputs (generated, not committed)
+└─ .gitignore (if present)
+```
+
+### :open_file_folder: API Implementation - src/main/java/com/gamelove/api/
+
+```
+src/main/java/com/gamelove/api/
+├─ GameLoveApiApplication.java
+├─ ConditionalDataLoader.java
+├─ controller/
+│  ├─ GameController.java
+│  └─ PlayerController.java
+├─ service/
+│  ├─ GameService.java
+│  ├─ PlayerService.java
+│  └─ impl/
+│     ├─ GameServiceImpl.java
+│     └─ PlayerServiceImpl.java
+├─ repository/
+│  ├─ GameRepository.java
+│  └─ PlayerRepository.java
+├─ mapper/
+│  ├─ GameMapper.java
+│  └─ PlayerMapper.java
+├─ model/
+│  ├─ Game.java
+│  ├─ Player.java
+│  ├─ Genre.java
+│  └─ Status.java
+├─ dto/
+│  ├─ CreateGameRequest.java
+│  ├─ UpdateGameRequest.java
+│  ├─ GameResponse.java
+│  ├─ GameStats.java
+│  ├─ GameStatsProjection.java
+│  ├─ CreatePlayerRequest.java
+│  ├─ UpdatePlayerRequest.java
+│  ├─ PlayerResponse.java
+│  └─ PlayerLovedGamesResponse.java
+└─ exception/
+   ├─ GameLoveException.java
+   ├─ ResourceNotFoundException.java
+   ├─ ResourceAlreadyExistsException.java
+   ├─ InvalidOperationException.java
+   └─ GlobalExceptionHandler.java
+```
 
 
 
